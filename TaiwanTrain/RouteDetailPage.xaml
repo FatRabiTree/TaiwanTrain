@@ -1,0 +1,75 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TaiwanTrain.RouteDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot 是放置所有頁面的根資料格-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel 包含應用程式的名稱和頁面標題-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PivotTitleFontSize}"/>
+            <TextBlock x:Name="TitleBox" Text="Title" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - 其他內容置於此-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,-20,0,0">
+            <phone:Pivot HorizontalAlignment="Left" Height="665" VerticalAlignment="Top" Width="480" Margin="0,-42,0,0">
+                <phone:PivotItem CacheMode="{x:Null}" Margin="0,20,0,0">
+                    <phone:PivotItem.Header>
+                        <Grid>
+                            <TextBlock FontSize="50" Text="{Binding Path=LocalizedResources.TodayAndTmrr, Source={StaticResource LocalizedStrings}}" Margin="0,20,0,0"/>
+                        </Grid>
+                    </phone:PivotItem.Header>
+                    <Grid>
+                        <phone:LongListSelector x:Name="RouteDetailSelector" HorizontalAlignment="Left" Width="444" Margin="0,-10,0,0">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel x:Name="TrainClass" Orientation="Horizontal">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock 
+                                                Margin="20,0,0,0"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"
+                                                Text="{Binding Title,Mode=TwoWay}"
+                                                FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                                            <TextBlock 
+                                                Margin="22,-5,0,0"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"
+                                                Text="{Binding Subtitle,Mode=TwoWay}"
+                                                FontSize="{StaticResource PhoneFontSizeMedium}" Width="Auto" Opacity="0.6"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </Grid>
+                </phone:PivotItem>
+                <phone:PivotItem CacheMode="{x:Null}">
+                    <phone:PivotItem.Header>
+                        <Grid>
+                            <TextBlock FontSize="50" Text="{Binding Path=LocalizedResources.Search, Source={StaticResource LocalizedStrings}}" Margin="0,20,0,0"/>
+                        </Grid>
+                    </phone:PivotItem.Header>
+                    <Grid/>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

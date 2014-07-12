@@ -1,0 +1,14 @@
+{
+	"1100":"Tze-Chiang Limited Express",
+	"1101":"Tze-Chiang Limited Express",
+	"1102":"Tze-Chiang Limited(Taroko) Express",
+	"1107":"New Tze-Chiang Limited Express",
+	"1110":"Chu-Kuang Express",
+	"1120":"Fu-Hsing Semi Express",
+	"1130":"Electric Multiple Unit",
+	"1131":"Local Train",
+	"1132":"Fast Local Train",
+	"1140":"Ordinary train",
+	"1141":"Fast Disel Rail Car",
+	"1150":"Disel Rail Car",
+}

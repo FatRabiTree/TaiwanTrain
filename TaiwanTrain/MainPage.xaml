@@ -1,0 +1,77 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TaiwanTrain.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:local="clr-namespace:TaiwanTrain"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+    
+
+    <!--資料內容設為以上範例資料，LayoutRoot 包含放置所有其他頁面的根資料格-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
+            <phone:Pivot x:Name="MainPagePivot" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="auto" Title="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" SelectionChanged="MainPagePivot_SelectionChanged">
+                <phone:PivotItem CacheMode="{x:Null}" Header="{Binding Path=LocalizedResources.PivotItem1_MyFavorite, Source={StaticResource LocalizedStrings}}" Margin="0,0,0,0">
+                    <phone:LongListSelector x:Name="FavoriteListSelector" HorizontalAlignment="Left" Width="460" Margin="0,0,0,0" Height="550">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel x:Name="FavoriteItem" Orientation="Vertical" Tap="FavoriteItem_Tap">
+                                    <TextBlock 
+                                        Margin="20,0,0,0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Left"
+                                        Text="{Binding Title,Mode=TwoWay}"
+                                        FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                                    <TextBlock 
+                                        Margin="22,-5,0,0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Left"
+                                        Text="{Binding Subtitle,Mode=TwoWay}"
+                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" Width="Auto" Opacity="0.6"/>
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu x:Name="FavoriteListMenu">
+                                            <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStartMenu, Source={StaticResource LocalizedStrings}}" Click="MenuItem_Click_Pin"/>
+                                            <toolkit:MenuItem Header="{Binding Path=LocalizedResources.Modify, Source={StaticResource LocalizedStrings}}" Click="MenuItem_Click_Modify"/>
+                                            <toolkit:MenuItem Header="{Binding Path=LocalizedResources.Delete, Source={StaticResource LocalizedStrings}}" Click ="MenuItem_Click_Delete"/>
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                </StackPanel>
+                                
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                    
+                </phone:PivotItem>
+                <phone:PivotItem CacheMode="{x:Null}" Header="{Binding Path=LocalizedResources.PivotItem2_Search, Source={StaticResource LocalizedStrings}}">
+                    <Grid/>
+                </phone:PivotItem>
+                <phone:PivotItem CacheMode="{x:Null}" Header="{Binding Path=LocalizedResources.PivotItem3_SuggestTrain, Source={StaticResource LocalizedStrings}}">
+                    <Grid/>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+
+        <!--取消註解以查看對齊格線，協助確保您的控制項
+            皆對齊共同的邊界。當影像在系統匣中顯示時的
+            上方邊界為 -32px。如果隱藏了系統匣，則將此值設為 0
+            (或完全移除邊界)。
+
+            在送出之前請移除此 XAML 和影像本身。-->
+        <!--"<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+    
+</phone:PhoneApplicationPage>
